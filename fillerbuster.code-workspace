@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"name": "monitor",
+			"path": "../../monitor"
+		},
+		{
+			"name": "tensorboard",
+			"path": "../../tensorboard"
+		},
+		{
+			"name": "temp",
+			"path": "../../temp"
+		},
+		{
+			"path": "../../mounts"
+		},
+		{
+			"path": "../../assets"
+		},
+		{
+			"path": "../../data"
+		},
+		{
+			"path": "../fillerbuster-website"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "fillerbuster/external/nerfstudio"
+		}
+	],
+	"settings": {
+		"terminal.integrated.enableImages": true,
+		"workbench.editor.enablePreviewFromQuickOpen": true,
+		"workbench.editor.enablePreview": true,
+		"explorer.autoReveal": false
+	}
+}
