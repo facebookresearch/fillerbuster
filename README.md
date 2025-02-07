@@ -2,7 +2,7 @@
 
 Fillerbuster is a unified multi-view diffusion model for solving a variety of scene completion tasks. We trained Fillerbuster from scratch. Here we provide training code and inference code for completing scenes.
 
-**Project Page @ https://github.com/ethanweber/fillerbuster**
+**Project Page @ https://ethanweber.me/fillerbuster**
 
 ***We provide training code and inference code, but we do not provide training data. However, this codebase should be easy to adapt to multi-view datasets!***
 
