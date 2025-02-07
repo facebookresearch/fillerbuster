@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fillerbuster"
+version = "0.0.0"
+description = "fillerbuster package"
+requires-python = ">=3.7.3"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+]
+dependencies = [
+    "diffusers==0.30.0",
+    "einops==0.8.0",
+    "mediapy",
+    "nerfstudio==1.1.5",
+    "numpy==1.26.3",
+    "transformers==4.43.2",
+    "viser",
+]
+
+[tool.setuptools.packages.find]
+include = ["fillerbuster*"]
+
+[project.scripts]
+tnd-train = "fillerbuster.scripts.train:entrypoint"
+
+[tool.ruff]
+line-length = 120
+respect-gitignore = false
+exclude = [
+    "fillerbuster/external"
+]
+lint.select = [
+    "E",  # pycodestyle errors.
+    "F",  # Pyflakes rules.
+    "I",  # isort formatting.
+    "PLC",  # Pylint convention warnings.
+    "PLE",  # Pylint errors.
+    "PLR",  # Pylint refactor recommendations.
+    "PLW",  # Pylint warnings.
+    "NPY201" # NumPY 2.0 migration https://numpy.org/devdocs/numpy_2_0_migration_guide.html#ruff-plugin
+]
+lint.ignore = [
+    "E501",  # Line too long.
+    "F722",  # Forward annotation false positive from jaxtyping. Should be caught by pyright.
+    "F821",  # Forward annotation false positive from jaxtyping. Should be caught by pyright.
+    "PLR2004",  # Magic value used in comparison.
+    "PLR0915",  # Too many statements.
+    "PLR0913",  # Too many arguments.
+    "PLC0414",  # Import alias does not rename variable. (this is used for exporting names)
+    "PLC1901",  # Use falsey strings.
+    "PLR5501",  # Use `elif` instead of `else if`.
+    "PLR0911",  # Too many return statements.
+    "PLR0912",  # Too many branches.
+    "PLW0603",  # Globa statement updates are discouraged.
+    "PLW2901",  # For loop variable overwritten.
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["nerfstudio"]
+split-on-trailing-comma = false
+
+[project.entry-points.'nerfstudio.method_configs']
+fillerbuster-scannetpp = "fillerbuster.configs.nerfstudio_methods:fillerbuster_scannetpp_config"
+fillerbuster-sstk3d = "fillerbuster.configs.nerfstudio_methods:fillerbuster_sstk3d_config"
+fillerbuster = "fillerbuster.configs.nerfstudio_methods:fillerbuster_config"
