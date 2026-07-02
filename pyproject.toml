@@ -17,7 +17,7 @@ dependencies = [
     "mediapy",
     "nerfstudio==1.1.5",
     "numpy==1.26.3",
-    "transformers==4.48.0",
+    "transformers==5.3.0",
     "viser",
 ]
 
