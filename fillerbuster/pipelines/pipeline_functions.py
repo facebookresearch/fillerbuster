@@ -120,11 +120,9 @@ def encode_image(
         imagen = image * 2 - 1
         imagen_reshaped = rearrange(imagen, "b n c h w -> (b n) c h w")
 
-        reshaped_posterior = vae.encode(imagen_reshaped).latent_dist
-        latents = reshaped_posterior.sample()
-        latents = latents * vae.config.scaling_factor
-
-        num_chunks = min(chunks, image.shape[0])
+        # chunk over the flattened (b n) images so the memory-saving chunking
+        # actually engages when batch size b is smaller than `chunks`
+        num_chunks = min(chunks, imagen_reshaped.shape[0])
 
         # perform chunking
         chunk_size = imagen_reshaped.shape[0] // num_chunks
@@ -187,7 +185,7 @@ def decode_image(
         x = latents / vae.config.scaling_factor
         x_reshaped = rearrange(x, "b n c h w -> (b n) c h w")
 
-        num_chunks = min(chunks, latents.shape[0])
+        num_chunks = min(chunks, x_reshaped.shape[0])
 
         # perform chunking
         chunk_size = x_reshaped.shape[0] // num_chunks
